@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Create environment
 conda create -n pcap_gpt python=3.9 --yes
 
