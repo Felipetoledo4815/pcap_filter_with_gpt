@@ -1,8 +1,13 @@
 import argparse
 import os
+
 from pathlib import Path
+from tabulate import tabulate
+from dotenv import load_dotenv
 from mysql_parser.parse_pcap import *
 from gpt_api.api import get_mysql_query
+
+load_dotenv()
 
 parser = argparse.ArgumentParser(
     prog='Pcap filter with GPT',
@@ -35,14 +40,14 @@ def main():
     # Parse the pcap file
     convert_pcap_to_table(args.pcap, cnx, cursor)
 
-    # TODO: Pass text to GPT and get a mysql query
+    # Pass text to GPT and get a mysql query
     mysql_query = get_mysql_query(args.query)
 
     # Send query to table and retrieve result
-    query = """ SELECT * FROM packets """
-    result = query_table(cursor, query)
+    # mysql_query = """ SELECT * FROM packets LIMIT 2"""
+    result = query_table(mysql_query, cnx)
 
-    print(result)
+    print(tabulate(result, headers='keys', tablefmt='psql'))
 
     # Close connection
     cursor.close()

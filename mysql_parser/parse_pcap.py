@@ -1,5 +1,9 @@
 import mysql.connector
 import pyshark
+import pandas as pd
+
+import warnings
+warnings.simplefilter(action='ignore', category=UserWarning)
 
 
 def init_database(host_name, username, pw):
@@ -64,11 +68,6 @@ def convert_pcap_to_table(file, cnx, cursor):
         cnx.commit()
 
 
-def query_table(cursor, query):
-    # Execute the given query
-    cursor.execute(""" USE pcap_data """)
-    cursor.execute(query)
-
-    # Retrieve and return results
-    data = cursor.fetchall()
+def query_table(query, cnx):
+    data = pd.read_sql(query, cnx)
     return data
