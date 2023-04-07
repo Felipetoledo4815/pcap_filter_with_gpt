@@ -1,30 +1,35 @@
 import argparse
+
 from pathlib import Path
+from gpt_api.api import query1
 
 parser = argparse.ArgumentParser(
-                    prog='Pcap filter with GPT',
-                    description='Query a pcap file using natural language')
+    prog='Pcap filter with GPT',
+    description='Query a pcap file using natural language')
 
 parser.add_argument(
-    "-pcap", 
+    "-pcap",
     "--pcap",
     type=Path,
     required=True,
     help="Path to the pcap file."
 )
 parser.add_argument(
-    "-q", 
+    "-q",
     "--query",
     type=str,
     required=True,
     help="Query in natural language."
 )
 
+
 def main():
     print("Should parse the pcap file")
     print("Should pass text to GPT and get a mysql query")
+    query1("Test")
     print("Should infer the database with the mysql query")
     print("Show results")
+
 
 if __name__ == "__main__":
     main()
