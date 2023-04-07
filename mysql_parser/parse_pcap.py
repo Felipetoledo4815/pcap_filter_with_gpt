@@ -13,21 +13,30 @@ def init_database(host_name, username, pw):
 
     # Create a table in the database named 'packets' (overwrites!)
     cursor.execute("DROP TABLE IF EXISTS packets")
-    cursor.execute("CREATE TABLE packets (id INT AUTO_INCREMENT PRIMARY KEY, src_ip VARCHAR(15), dst_ip VARCHAR(15), src_port INT, dst_port INT, protocol VARCHAR(10), length INT, timestamp DOUBLE, syn_flag INT, ack_flag INT, fin_flag INT, handshake VARCHAR(200), record VARCHAR(200))")
+    cursor.execute("CREATE TABLE packets (id INT AUTO_INCREMENT PRIMARY KEY, src_ip VARCHAR(30), dst_ip VARCHAR(30), src_port INT, dst_port INT, protocol VARCHAR(10), length INT, timestamp DOUBLE, syn_flag INT, ack_flag INT, fin_flag INT, handshake VARCHAR(200), record VARCHAR(200))")
     return cnx, cursor
 
 
 def convert_pcap_to_table(file, cnx, cursor):
     # Iterate through pcap file and insert into table
     cap = pyshark.FileCapture(file)
-
     # For each packet...
     for pkt in cap:
         timestamp = float(pkt.sniff_time.timestamp())
-        src_ip = str(pkt.ip.src)
-        dst_ip = str(pkt.ip.dst)
-        src_port = int(pkt[pkt.transport_layer].srcport)
-        dst_port = int(pkt[pkt.transport_layer].dstport)
+        src_ip = dst_pi = ""
+        src_port = dst_port = -1
+
+        if hasattr(pkt, 'ip'):
+            src_ip = str(pkt.ip.src)
+            dst_ip = str(pkt.ip.dst)
+        elif hasattr(pkt, 'ipv6'):
+            src_ip = str(pkt.ipv6.src)
+            src_ip = str(pkt.ipv6.dst)
+
+        if pkt.transport_layer:
+            src_port = int(pkt[pkt.transport_layer].srcport)
+            dst_port = int(pkt[pkt.transport_layer].dstport)
+
         length = int(pkt.length)
         protocol = str(pkt.transport_layer)
 
