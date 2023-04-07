@@ -1,4 +1,4 @@
-SELECT src_ip
+SELECT src_ip, dst_ip
 FROM (
 	SELECT src_ip, dst_ip, COUNT(*) as C
 	FROM pcap_data.packets
