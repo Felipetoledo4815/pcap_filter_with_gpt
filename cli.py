@@ -2,7 +2,7 @@ import argparse
 import os
 from pathlib import Path
 from mysql_parser.parse_pcap import *
-from gpt_api.api import query1
+from gpt_api.api import get_mysql_query
 
 parser = argparse.ArgumentParser(
     prog='Pcap filter with GPT',
@@ -36,7 +36,7 @@ def main():
     convert_pcap_to_table(args.pcap, cnx, cursor)
 
     # TODO: Pass text to GPT and get a mysql query
-    query1("Test")
+    mysql_query = get_mysql_query(args.query)
 
     # Send query to table and retrieve result
     query = """ SELECT * FROM packets """
@@ -47,7 +47,6 @@ def main():
     # Close connection
     cursor.close()
     cnx.close()
-
 
 
 if __name__ == "__main__":
