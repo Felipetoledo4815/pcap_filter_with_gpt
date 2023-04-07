@@ -13,7 +13,7 @@ def init_database(host_name, username, pw):
 
     # Create a table in the database named 'packets' (overwrites!)
     cursor.execute("DROP TABLE IF EXISTS packets")
-    cursor.execute("CREATE TABLE packets (id INT AUTO_INCREMENT PRIMARY KEY, src_ip VARCHAR(30), dst_ip VARCHAR(30), src_port INT, dst_port INT, protocol VARCHAR(10), length INT, timestamp DOUBLE, syn_flag INT, ack_flag INT, fin_flag INT, handshake VARCHAR(200), record VARCHAR(200))")
+    cursor.execute("CREATE TABLE packets (id INT AUTO_INCREMENT PRIMARY KEY, src_ip VARCHAR(40), dst_ip VARCHAR(40), src_port INT, dst_port INT, protocol VARCHAR(10), length INT, timestamp DOUBLE, syn_flag INT, ack_flag INT, fin_flag INT, handshake VARCHAR(200), record VARCHAR(200))")
     return cnx, cursor
 
 
