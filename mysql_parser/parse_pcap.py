@@ -1,6 +1,7 @@
 import mysql.connector
 import pyshark
 
+
 def init_database(host_name, username, pw):
     # Connection to mysql server (enter your mysql info in these fields)
     cnx = mysql.connector.connect(host=host_name, user=username, password=pw)
@@ -40,7 +41,7 @@ def convert_pcap_to_table(file, cnx, cursor):
 
         if "TLS" in str(pkt.layers):
             if "handshake" in pkt.tls.field_names:
-                #print(pkt.tls.field_names)
+                # print(pkt.tls.field_names)
                 handshake = str(pkt.tls.handshake)
 
             if "record" in pkt.tls.field_names:
@@ -48,7 +49,8 @@ def convert_pcap_to_table(file, cnx, cursor):
 
         # Insert info into database
         query = "INSERT INTO packets (src_ip, dst_ip, src_port, dst_port, protocol, length, timestamp, syn_flag, ack_flag, fin_flag, handshake, record) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-        values = (src_ip, dst_ip, src_port, dst_port, protocol, length, timestamp, syn_flag, ack_flag, fin_flag, handshake, record)
+        values = (src_ip, dst_ip, src_port, dst_port, protocol, length,
+                  timestamp, syn_flag, ack_flag, fin_flag, handshake, record)
         cursor.execute(query, values)
         cnx.commit()
 

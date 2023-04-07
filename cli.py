@@ -1,13 +1,14 @@
 import argparse
+import os
 from pathlib import Path
 from mysql_parser.parse_pcap import *
 
 parser = argparse.ArgumentParser(
-                    prog='Pcap filter with GPT',
-                    description='Query a pcap file using natural language')
+    prog='Pcap filter with GPT',
+    description='Query a pcap file using natural language')
 
 parser.add_argument(
-    "-pcap", 
+    "-pcap",
     "--pcap",
     type=Path,
     required=True,
@@ -15,7 +16,7 @@ parser.add_argument(
     help="Path to the pcap file."
 )
 parser.add_argument(
-    "-q", 
+    "-q",
     "--query",
     type=str,
     required=True,
@@ -23,16 +24,17 @@ parser.add_argument(
     help="Query in natural language."
 )
 
+
 def main():
     args = parser.parse_args()
     # Connect and initialize MySQL database
-    cnx, cursor = init_database("localhost", "root", "password")
+    cnx, cursor = init_database("localhost", os.getenv(
+        "MYSQL_USER"), os.getenv("MYSQL_PASSWORD"))
 
     # Parse the pcap file
     convert_pcap_to_table(args.pcap, cnx, cursor)
 
     # TODO: Pass text to GPT and get a mysql query
-
 
     # Send query to table and retrieve result
     query = """ SELECT * FROM packets """
@@ -43,6 +45,7 @@ def main():
     # Close connection
     cursor.close()
     cnx.close()
+
 
 if __name__ == "__main__":
     main()
