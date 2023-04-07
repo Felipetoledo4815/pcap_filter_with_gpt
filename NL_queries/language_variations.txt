@@ -1,2 +1,48 @@
-What is the IP address that has sent the most number of TCP packages?
+What is the IP address that has sent the most number of TCP packets?
 ¿Cuál es la dirección IP que ha enviado la mayor cantidad de paquetes TCP?
+Quelle est l'adresse IP qui a envoyé le plus de paquets TCP?
+发送最多 TCP 数据包的 IP 地址是什么?
+Qual è l'indirizzo IP che ha inviato il maggior numero di pacchetti TCP?
+Qual é o endereço IP que enviou o maior número de pacotes TCP?
+
+What is the IP address that has sent the most data?
+¿Cuál es la dirección IP que más datos ha enviado?
+Quelle est l'adresse IP qui a envoyé le plus de données?
+发送最多数据的 IP 地址是什么?
+Qual è l'indirizzo IP che ha inviato più dati?
+Qual é o endereço IP que enviou mais dados?
+
+What are the IPs that have shared the most number of TCP packets?
+¿Cuáles son las IP que han compartido la mayor cantidad de paquetes TCP?
+Quelles sont les IP qui ont partagé le plus de paquets TCP?
+共享最多 TCP 数据包的 IP 是什么?
+Quali sono gli IP che hanno condiviso il maggior numero di pacchetti TCP?
+Quais são os IPs que compartilharam o maior número de pacotes TCP?
+
+What are the IPs that have shared most data?
+¿Cuáles son las IP que más datos han compartido?
+Quelles sont les adresses IP qui ont partagé le plus de données?
+共享最多数据的 IP 是什么?
+Quali sono gli IP che hanno condiviso la maggior parte dei dati?
+Quais são os IPs que compartilharam mais dados?
+
+How many handshakes does IP X do?
+¿Cuántos apretones de manos hace IP X?
+Combien de poignées de main IP X effectue-t-il?
+IP X 进行了多少次握手?
+Quante strette di mano fa IP X?
+Quantos handshakes o IP X faz?
+
+How many handshakes are there?
+¿Cuántos apretones de manos hay?
+Combien y a-t-il de poignées de main?
+有多少次握手?
+Quante strette di mano ci sono?
+Quantos apertos de mão existem?
+
+What is the most used protocol?
+¿Cuál es el protocolo más utilizado?
+Quel est le protocole le plus utilisé?
+最常用的协议是什么?
+Qual è il protocollo più utilizzato?
+Qual é o protocolo mais utilizado?
