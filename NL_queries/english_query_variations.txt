@@ -1,0 +1,34 @@
+What is the IP address that has sent the most number of TCP packages?
+Which IP address sent the largest number of TCP packages?
+Out of all the IP addresses, which one sent the greatest quantity of TCP packages?
+Of all the TCP packages sent, which IP address sent the most?
+
+What is the IP address that has sent the most data?
+Which IP address sent the most data?
+Of all the data sent, which of the IP addresses sent the majority?
+Tell me the IP address that transmitted more data than any of the other IP addresses.
+
+What are the IPs that have shared the most number of TCP packages?
+Which IP addresses have sent the highest amount of TCP packages?
+Give me the IP addresses of those that have sent the most TCP packages.
+Which IPs have sent the most TCP packages?
+
+What are the IPs that have shared most data?
+Which IP addresses have sent the highest amount of data?
+Of all the data sent, which IPs have shared the most?
+Tell me the IP address of that which sent the most data.
+
+How many handshakes does IP X do?
+Exactly how many times was IP X involved in the handshake protocol?
+Tell me the quantity of handshakes that IP X did.
+In total, IP X did exactly how many handshakes?
+
+How many handshakes are there?
+In total, how many times was a handshake protocol performed?
+Between all IPs, how many handshakes were there in total?
+Tell me exactly how many handshakes were performed, across all IPs.
+
+What is the most used protocol?
+Which protocol was used the most?
+Of all protocols, which one was used the most?
+What is the protocol that had the most use?
