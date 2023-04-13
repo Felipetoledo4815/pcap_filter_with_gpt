@@ -1,3 +1,5 @@
+from tqdm import tqdm
+from pathlib import Path
 import mysql.connector
 import pyshark
 import pandas as pd
@@ -23,9 +25,11 @@ def init_database(host_name, username, pw):
 
 def convert_pcap_to_table(file, cnx, cursor):
     # Iterate through pcap file and insert into table
+    print(f"Creating MySQL table from {Path(file).name}...")
     cap = pyshark.FileCapture(file)
+    cap.load_packets()
     # For each packet...
-    for pkt in cap:
+    for pkt in tqdm(cap, total=len(cap)):
         timestamp = float(pkt.sniff_time.timestamp())
         src_ip = dst_pi = ""
         src_port = dst_port = -1

@@ -1,0 +1,6 @@
+What is the IP address that has sent the most number of TCP packets?
+What is the IP address that has sent the most data?
+What are the IPs that have shared the most number of TCP packets?
+What are the IPs that have shared most data?
+How many handshakes are there?
+What is the most used protocol?

@@ -1,6 +1,8 @@
-SELECT SUM(c) as c
+SELECT protocol
 FROM (
-	SELECT COUNT(*) as c
+    SELECT protocol, COUNT(*) as c
 	FROM pcap_data.packets
-	WHERE handshake <> ""
+	GROUP BY protocol
+	ORDER BY c DESC
 ) aux
+LIMIT 1

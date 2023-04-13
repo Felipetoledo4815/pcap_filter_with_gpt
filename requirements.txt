@@ -4,3 +4,6 @@ openai
 pandas
 tabulate
 python-dotenv
+ipykernel
+matplotlib
+seaborn
