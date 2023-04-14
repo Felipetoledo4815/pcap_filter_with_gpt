@@ -64,26 +64,126 @@ def main():
 
                 # Compare two pd.DataFrames
                 status = False
-                # if ground_truth[i].equals(df):
                 if ground_truth[i].isin(df.values.ravel()).any().all():
                     status = True
 
                 result = {
                     "status": status,
-                    "query": query,
+                    "group_id": i,
+                    "group_query": query,
                     "gt_output": ground_truth[i],
+                    "gpt_query": mysql_query,
                     "approach_output": df,
                     "time": end - start
                 }
                 exp1[pcap_file].append(result)
+                time.sleep(20)
 
             # Save exp1 to a .pkl file
             with open('./experiment/exp1.pkl', 'wb') as f:
                 pickle.dump(exp1, f)
 
         """ Exp 2: Engligh variations """
+        if args.exp2:
+            print(f"Running experiment 2 on {pcap_file}...")
+
+            # Read .txt and save it to a list
+            with open('./NL_queries/english_query_variations.txt', 'r') as f:
+                english_query_variations = f.read().splitlines()
+
+            query_groups = []
+            group = []
+            for line in english_query_variations:
+                if line != '':
+                    group.append(line)
+                else:
+                    query_groups.append(group)
+                    group = []
+            if group:
+                query_groups.append(group)
+
+            exp2[pcap_file] = []
+            for i, group in tqdm(enumerate(query_groups), total=len(query_groups)):
+                for query in tqdm(group[1:], total=len(group[1:]), leave=False):
+                    start = time.time()
+                    # Pass text to GPT and get a mysql query
+                    mysql_query = get_mysql_query(query)
+                    # Send query to MySQL and retrieve result
+                    df = query_table(mysql_query, cnx)
+                    end = time.time()
+
+                    # Compare two pd.DataFrames
+                    status = False
+                    if ground_truth[i].isin(df.values.ravel()).any().all():
+                        status = True
+
+                    result = {
+                        "status": status,
+                        "group_id": i,
+                        "group_query": group[0],
+                        "modified_query": query,
+                        "gt_output": ground_truth[i],
+                        "gpt_query": mysql_query,
+                        "approach_output": df,
+                        "time": end - start
+                    }
+                    exp2[pcap_file].append(result)
+                    time.sleep(20)
+
+            # Save exp2 to a .pkl file
+            with open('./experiment/exp2.pkl', 'wb') as f:
+                pickle.dump(exp2, f)
 
         """ Exp 3: Language variations """
+        if args.exp3:
+            print(f"Running experiment 3 on {pcap_file}...")
+
+            # Read .txt and save it to a list
+            with open('./NL_queries/language_variations.txt', 'r') as f:
+                language_variations = f.read().splitlines()
+
+            query_groups = []
+            group = []
+            for line in language_variations:
+                if line != '':
+                    group.append(line)
+                else:
+                    query_groups.append(group)
+                    group = []
+            if group:
+                query_groups.append(group)
+
+            exp3[pcap_file] = []
+            for i, group in tqdm(enumerate(query_groups), total=len(query_groups)):
+                for query in tqdm(group[1:], total=len(group[1:]), leave=False):
+                    start = time.time()
+                    # Pass text to GPT and get a mysql query
+                    mysql_query = get_mysql_query(query)
+                    # Send query to MySQL and retrieve result
+                    df = query_table(mysql_query, cnx)
+                    end = time.time()
+
+                    # Compare two pd.DataFrames
+                    status = False
+                    if ground_truth[i].isin(df.values.ravel()).any().all():
+                        status = True
+
+                    result = {
+                        "status": status,
+                        "group_id": i,
+                        "group_query": group[0],
+                        "modified_query": query,
+                        "gt_output": ground_truth[i],
+                        "gpt_query": mysql_query,
+                        "approach_output": df,
+                        "time": end - start
+                    }
+                    exp3[pcap_file].append(result)
+                    time.sleep(20)
+
+            # Save exp3 to a .pkl file
+            with open('./experiment/exp3.pkl', 'wb') as f:
+                pickle.dump(exp3, f)
 
         """ Exp 4: Adversarial variations """
 

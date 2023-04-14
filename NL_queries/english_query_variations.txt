@@ -18,11 +18,6 @@ Which IP addresses have sent the highest amount of data?
 Of all the data sent, which IPs have shared the most?
 Tell me the IP address of that which sent the most data.
 
-How many handshakes does IP X do?
-Exactly how many times was IP X involved in the handshake protocol?
-Tell me the quantity of handshakes that IP X did.
-In total, IP X did exactly how many handshakes?
-
 How many handshakes are there?
 In total, how many times was a handshake protocol performed?
 Between all IPs, how many handshakes were there in total?

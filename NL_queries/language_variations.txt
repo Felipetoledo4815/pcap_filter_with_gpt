@@ -26,13 +26,6 @@ Quelles sont les adresses IP qui ont partagé le plus de données?
 Quali sono gli IP che hanno condiviso la maggior parte dei dati?
 Quais são os IPs que compartilharam mais dados?
 
-How many handshakes does IP X do?
-¿Cuántos apretones de manos hace IP X?
-Combien de poignées de main IP X effectue-t-il?
-IP X 进行了多少次握手?
-Quante strette di mano fa IP X?
-Quantos handshakes o IP X faz?
-
 How many handshakes are there?
 ¿Cuántos apretones de manos hay?
 Combien y a-t-il de poignées de main?
