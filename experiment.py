@@ -186,7 +186,55 @@ def main():
                 pickle.dump(exp3, f)
 
         """ Exp 4: Adversarial variations """
+        if args.exp4:
+            print(f"Running experiment 4 on {pcap_file}...")
 
+            # Read .txt and save it to a list
+            with open('./NL_queries/adversarials.txt', 'r') as f:
+                adversarials = f.read().splitlines()
+
+            query_groups = []
+            group = []
+            for line in adversarials:
+                if line != '':
+                    group.append(line)
+                else:
+                    query_groups.append(group)
+                    group = []
+            if group:
+                query_groups.append(group)
+
+            exp4[pcap_file] = []
+            for i, group in tqdm(enumerate(query_groups), total=len(query_groups)):
+                for query in tqdm(group[1:], total=len(group[1:]), leave=False):
+                    start = time.time()
+                    # Pass text to GPT and get a mysql query
+                    mysql_query = get_mysql_query(query)
+                    # Send query to MySQL and retrieve result
+                    df = query_table(mysql_query, cnx)
+                    end = time.time()
+
+                    # Compare two pd.DataFrames
+                    status = False
+                    if ground_truth[i].isin(df.values.ravel()).any().all():
+                        status = True
+
+                    result = {
+                        "status": status,
+                        "group_id": i,
+                        "group_query": group[0],
+                        "modified_query": query,
+                        "gt_output": ground_truth[i],
+                        "gpt_query": mysql_query,
+                        "approach_output": df,
+                        "time": end - start
+                    }
+                    exp4[pcap_file].append(result)
+                    time.sleep(20)
+
+            # Save exp4 to a .pkl file
+            with open('./experiment/exp4.pkl', 'wb') as f:
+                pickle.dump(exp4, f)
         # Close connection
         cursor.close()
         cnx.close()
