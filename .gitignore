@@ -132,3 +132,5 @@ dmypy.json
 .vscode
 experiment_results_troubleshooting.ipynb
 experiment/exp1_v0.pkl
+experiment/exp4_v0.pkl
+experiment/exp4_fix.pkl

@@ -4,6 +4,8 @@ rf = open("../pcap_filter_with_gpt/NL_queries/english_query_base.txt", 'r')
 wf = open("../pcap_filter_with_gpt/NL_queries/adversarials.txt", 'w')
 
 # remove letters
+
+
 def removeLetters(query):
     min_word_len = 4
     l = []
@@ -22,6 +24,8 @@ def removeLetters(query):
     return l
 
 # find neighbor keys
+
+
 def get_neighbor_keys(key):
     lines = 'qwertyuiop', 'asdfghjkl', 'zxcvbnm'
     line_index, index = [(i, l.find(key)) for i, l in enumerate(lines) if key in l][0]
@@ -29,6 +33,7 @@ def get_neighbor_keys(key):
     return [
         line[index + i] for line in lines for i in [-1, 0, 1]
         if len(line) > index + i and line[index + i] != key and index + i >= 0]
+
 
 def neighbor_keys(query):
     min_word_len = 4
@@ -40,7 +45,7 @@ def neighbor_keys(query):
             if len(word) > min_word_len:
                 idx = random.randint(0, len(word) - 1)
                 var = get_neighbor_keys(word[idx])
-                v = var[random.randint(0, len(var) -1)]
+                v = var[random.randint(0, len(var) - 1)]
                 words[i] = word[:idx] + v + word[idx+1:]
         new_query = " ".join(words)
         if query[-1] == "?":
@@ -54,7 +59,7 @@ def neighbor_keys(query):
 def let2num(query):
     s = query
     max_swaps = 3
-    d = {'e':'3', 'l':'1', 'o':'0', 'a':'4', 's':'5', 'b':'8', 't':'7'}
+    d = {'e': '3', 'l': '1', 'o': '0', 'a': '4', 's': '5', 'b': '8', 't': '7'}
     l = []
     for k in range(number_per_variation):
         query = s
@@ -63,11 +68,12 @@ def let2num(query):
             idx = random.randint(0, len(query[:-1]) - 1)
             if query[idx] in d:
                 query = query[:idx] + d[query[idx]] + query[idx+1:]
-                i+=1
+                i += 1
                 print(i)
         query += '\n'
         l.append(query)
     return l
+
 
 for query in rf.readlines():
     wf.write(query)
@@ -81,7 +87,3 @@ for query in rf.readlines():
             wf.write(aq.replace('\n', ''))
             wf.write('\n')
     wf.write('\n')
-
-
-
-
