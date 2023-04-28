@@ -1,12 +1,18 @@
 #!/bin/bash
 
-### Install MySQL server
-sudo apt update
-sudo apt install mysql-server --yes
-sudo systemctl start mysql.service
+############################################
+### Install MySQL server in Ubuntu 20.04 ###
+############################################
 
-# Follow steps in https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04
-# to configure MySQL password
+### Follow steps in https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04 to configure MySQL password
+
+# sudo apt update
+# sudo apt install mysql-server --yes
+# sudo systemctl start mysql.service
+
+#####################
+### Other modules ###
+#####################
 
 ### Install tshark
 sudo apt install tshark
