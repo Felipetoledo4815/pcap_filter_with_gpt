@@ -1,6 +1,6 @@
 # Pcap filter with GPT
 
-## See how it works!
+## How it works?
 ![Alt Text](./demo.gif)
 
 ## Installation
@@ -23,3 +23,28 @@ MYSQL_USER="XXX"
 MYSQL_PASSWORD="XXX"
 ```
 The `.env` file will not be pushed to Github, therefore your user and password will not be shown in the repository.
+
+## Run Command Line Tool
+An running example can be seen at the gif file in section [How it works?](#how-it-works). Next are the commands that need to be run.
+
+```shell
+conda activate pcap_gpt
+python cli.py -pcap {$PCAP_FILE} - q "{$QUERY}"
+```
+
+## Run Experiment
+To evaluate our tool, we designed 4 experiments. A summary of them are showed in the next table.
+
+| Exp # |      Evaluation     |
+|:-----:|:-------------------:|
+|   1   |   Original Queries  |
+|   2   |  English Variations |
+|   3   | Language Variations |
+|   4   | Adversarial Attacks |
+
+To execute an experiment, run the following commands in your terminal:
+
+```shell
+conda activate pcap_gpt
+python experiment.py {[-exp1, -exp2, -exp3, -exp4]}
+```

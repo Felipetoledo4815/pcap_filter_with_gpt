@@ -13,10 +13,10 @@ from gpt_api.api import get_mysql_query
 load_dotenv()
 
 parser = argparse.ArgumentParser(prog='Tool experiment.')
-parser.add_argument('--exp1', action='store_true')
-parser.add_argument('--exp2', action='store_true')
-parser.add_argument('--exp3', action='store_true')
-parser.add_argument('--exp4', action='store_true')
+parser.add_argument('--exp1', description='Run experiment 1: Original Queries.', action='store_true')
+parser.add_argument('--exp2', description='Run experiment 2: English Variations.',action='store_true')
+parser.add_argument('--exp3', description='Run experiment 3: Language Variations.',action='store_true')
+parser.add_argument('--exp4', description='Run experiment 4: Adversarial Attacks',action='store_true')
 
 
 def get_adv_type(idx):
@@ -50,7 +50,7 @@ def main():
             ground_truth = []
             for i in range(1, 7):
                 sql_query = open(f"mysql_queries/q{i}.sql",
-                                mode='r', encoding='utf-8-sig').read()
+                                 mode='r', encoding='utf-8-sig').read()
                 df = query_table(sql_query, cnx)
                 ground_truth.append(df)
                 # print(tabulate(result, headers='keys', tablefmt='psql'))
